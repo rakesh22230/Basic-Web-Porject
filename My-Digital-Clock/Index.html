@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> MY DIGITAL CLOCK</title>
-    <!-- == Style Sheet === -->
-    <link rel="stylesheet" href="Style.CSS">
+    <title>MY DIGITAL CLOCK</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -15,54 +14,40 @@
         <div class="container">
             <div class="clock">
                 <span class="H"></span>
-                <span class="M"></span> <br>
+                <span class="M"></span><br>
                 <span class="date"></span>
             </div>
         </div>
     </div>
 
-    <!-- ====================JavaScript Start==================== -->
     <script>
         function MyTime() {
             var myDate = new Date();
-            var hr, min = (myDate.getMinutes() < 10) ? "0" + myDate.getMinutes() : myDate.getMinutes();
-            sec = (myDate.getSeconds() < 10) ? "0" + myDate.getUTCSeconds() : myDate.getSeconds();
-            M = (myDate.getHours() >= 12) ? "PM" : "AM";
 
+            var hr = myDate.getHours();
+            var min = (myDate.getMinutes() < 10) ? "0" + myDate.getMinutes() : myDate.getMinutes();
+            var sec = (myDate.getSeconds() < 10) ? "0" + myDate.getSeconds() : myDate.getSeconds();
+            var M = (hr >= 12) ? "PM" : "AM";
 
-            if (myDate.getHours() == 0) {
-                hr = 12;
-            }
-            else if (myDate.getHours() > 12) {
-                hr = myDate.getHours() - 12;
-            }
-            else {
-                hr = myDate.getHours();
-            }
+            if (hr == 0) hr = 12;
+            else if (hr > 12) hr = hr - 12;
 
-            var CurrentTime = hr + " : " + min + " : " + sec + " ";
+            var CurrentTime = hr + " : " + min + " : " + sec;
             document.getElementsByClassName("H")[0].innerHTML = CurrentTime;
             document.getElementsByClassName("M")[0].innerHTML = M;
 
-            //   Cureent Day Calculation : -------------------------
+            var myDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            var myMonth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            var day = myDate.getDate();
 
-            var myDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Satarday"],
-                myMonth = ["January", "February", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December"],
-                day = myDate.getDate();
-
-            var CurrentDay = myDay[myDate.getDay()] + "  ,  " + myMonth[myDate.getMonth()] + " " + day;
+            var CurrentDay = myDay[myDate.getDay()] + ", " + myMonth[myDate.getMonth()] + " " + day;
             document.getElementsByClassName("date")[0].innerHTML = CurrentDay;
         }
 
         MyTime();
-
-        setInterval(function () {
-            MyTime();
-        }, 1000);
-
-        // ==============JavaScript Ends===================
-
+        setInterval(MyTime, 1000);
     </script>
+
 </body>
 
 </html>
