@@ -1,0 +1,92 @@
+/* Global reset and font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+#Watch {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(45deg, #08001f, #30197d);
+    color: #fff;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Responsive container for clock */
+.container-clock {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    position: relative;
+}
+
+/* Clock styling */
+.clock {
+    width: 100%;
+    padding: 40px 20px;
+    background-color: rgba(235, 0, 255, 0.11);
+    border-radius: 15px;
+    backdrop-filter: blur(30px);
+    position: relative;
+    z-index: 1;
+}
+
+/* Decorative elements */
+.container-clock::before {
+    content: '';
+    width: 150px;
+    height: 150px;
+    background: #f41b75;
+    border-radius: 5px;
+    position: absolute;
+    left: -40px;
+    top: -40px;
+    z-index: 0;
+}
+
+.container-clock::after {
+    content: '';
+    width: 150px;
+    height: 150px;
+    background: #419aff;
+    border-radius: 50%;
+    position: absolute;
+    right: -40px;
+    bottom: -40px;
+    z-index: 0;
+}
+
+/* Clock text styles */
+.clock span {
+    font-size: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .clock span {
+        font-size: 1.5rem;
+    }
+
+    .container-clock::before,
+    .container-clock::after {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (min-width: 768px) {
+    .clock span {
+        font-size: 2.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .clock span {
+        font-size: 3rem;
+    }
+}
