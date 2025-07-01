@@ -1,4 +1,3 @@
-/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -6,85 +5,82 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body {
-    background: linear-gradient(45deg, #08001f, #30197d);
-    color: #fff;
-}
-
 #Watch {
     width: 100%;
     min-height: 100vh;
+    background: linear-gradient(45deg, #08001f, #30197d);
+    color: #fff;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     padding: 20px;
 }
 
-/* Container styles */
 .container {
-    max-width: 90%;
-    width: 400px;
+    width: 90%;
+    max-width: 600px;
     height: auto;
     padding: 30px 20px;
     background-color: rgba(235, 0, 255, 0.11);
-    border-radius: 10px;
-    backdrop-filter: blur(40px);
+    border-radius: 15px;
     text-align: center;
+    backdrop-filter: blur(40px);
     position: relative;
 }
 
-/* Decorative elements */
-.container::before,
+.container::before {
+    content: '';
+    width: 120px;
+    height: 120px;
+    background: #f41b75;
+    border-radius: 10px;
+    position: absolute;
+    left: -40px;
+    top: -40px;
+    z-index: -1;
+}
+
 .container::after {
     content: '';
     width: 120px;
     height: 120px;
-    position: absolute;
-    z-index: -1;
-    opacity: 0.7;
-}
-
-.container::before {
-    background: #f41b75;
-    left: -30px;
-    top: -30px;
-    border-radius: 10px;
-}
-
-.container::after {
     background: #419aff;
-    right: -30px;
-    bottom: -30px;
     border-radius: 50%;
+    position: absolute;
+    right: -40px;
+    bottom: -40px;
+    z-index: -1;
 }
 
-/* Clock text */
 .clock span {
     font-size: 2rem;
     display: block;
     margin: 10px 0;
-    word-wrap: break-word;
 }
 
-/* Media Queries for larger screens */
-@media (min-width: 600px) {
-    .container {
-        width: 500px;
-        padding: 40px;
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .clock span {
+        font-size: 1.6rem;
     }
 
-    .clock span {
-        font-size: 2.5rem;
+    .container {
+        padding: 20px 15px;
+    }
+
+    .container::before,
+    .container::after {
+        width: 80px;
+        height: 80px;
     }
 }
 
-@media (min-width: 1024px) {
-    .container {
-        width: 800px;
-        height: 300px;
+@media (max-width: 480px) {
+    .clock span {
+        font-size: 1.3rem;
     }
 
-    .clock span {
-        font-size: 3rem;
+    .container {
+        padding: 15px 10px;
     }
 }
