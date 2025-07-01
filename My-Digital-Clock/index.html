@@ -1,69 +1,63 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> MY DIGITAL CLOCK</title>
-    <!-- == Style Sheet === -->
-    <link rel="stylesheet" href="Style.CSS">
+    <title>MY DIGITAL CLOCK</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="Style.css">
 </head>
 
 <body>
 
-    <div id="Watch">
-        <div class="container">
-            <div class="clock">
-                <span class="H"></span>
-                <span class="M"></span> <br>
-                <span class="date"></span>
+    <div id="Watch" class="d-flex justify-content-center align-items-center">
+        <div class="container-clock">
+            <div class="clock text-white text-center">
+                <span class="H d-block"></span>
+                <span class="M d-block"></span>
+                <span class="date d-block mt-2"></span>
             </div>
         </div>
     </div>
 
-    <!-- ====================JavaScript Start==================== -->
+    <!-- JavaScript -->
     <script>
         function MyTime() {
             var myDate = new Date();
-            var hr, min = (myDate.getMinutes() < 10) ? "0" + myDate.getMinutes() : myDate.getMinutes();
-            sec = (myDate.getSeconds() < 10) ? "0" + myDate.getUTCSeconds() : myDate.getSeconds();
-            M = (myDate.getHours() >= 12) ? "PM" : "AM";
+            var hr = myDate.getHours();
+            var min = (myDate.getMinutes() < 10) ? "0" + myDate.getMinutes() : myDate.getMinutes();
+            var sec = (myDate.getSeconds() < 10) ? "0" + myDate.getSeconds() : myDate.getSeconds();
+            var M = (hr >= 12) ? "PM" : "AM";
 
-
-            if (myDate.getHours() == 0) {
+            if (hr == 0) {
                 hr = 12;
-            }
-            else if (myDate.getHours() > 12) {
-                hr = myDate.getHours() - 12;
-            }
-            else {
-                hr = myDate.getHours();
+            } else if (hr > 12) {
+                hr -= 12;
             }
 
-            var CurrentTime = hr + " : " + min + " : " + sec + " ";
-            document.getElementsByClassName("H")[0].innerHTML = CurrentTime;
-            document.getElementsByClassName("M")[0].innerHTML = M;
+            var CurrentTime = hr + " : " + min + " : " + sec;
+            document.querySelector(".H").innerHTML = CurrentTime;
+            document.querySelector(".M").innerHTML = M;
 
-            //   Cureent Day Calculation : -------------------------
-
-            var myDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Satarday"],
-                myMonth = ["January", "February", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December"],
-                day = myDate.getDate();
-
-            var CurrentDay = myDay[myDate.getDay()] + "  ,  " + myMonth[myDate.getMonth()] + " " + day;
-            document.getElementsByClassName("date")[0].innerHTML = CurrentDay;
+            const myDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const myMonth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const day = myDate.getDate();
+            const CurrentDay = myDay[myDate.getDay()] + ", " + myMonth[myDate.getMonth()] + " " + day;
+            document.querySelector(".date").innerHTML = CurrentDay;
         }
 
         MyTime();
-
-        setInterval(function () {
-            MyTime();
-        }, 1000);
-
-        // ==============JavaScript Ends===================
-
+        setInterval(MyTime, 1000);
     </script>
+
+    <!-- Bootstrap JS CDN (optional if you want components later) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
+
