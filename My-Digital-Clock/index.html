@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY DIGITAL CLOCK</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Responsive Digital Clock</title>
+    <link rel="stylesheet" href="Style.css" />
 </head>
-
 <body>
 
     <div id="Watch">
         <div class="container">
             <div class="clock">
                 <span class="H"></span>
-                <span class="M"></span><br>
+                <span class="M"></span> <br />
                 <span class="date"></span>
             </div>
         </div>
@@ -23,14 +21,16 @@
     <script>
         function MyTime() {
             var myDate = new Date();
-
             var hr = myDate.getHours();
             var min = (myDate.getMinutes() < 10) ? "0" + myDate.getMinutes() : myDate.getMinutes();
             var sec = (myDate.getSeconds() < 10) ? "0" + myDate.getSeconds() : myDate.getSeconds();
             var M = (hr >= 12) ? "PM" : "AM";
 
-            if (hr == 0) hr = 12;
-            else if (hr > 12) hr = hr - 12;
+            if (hr == 0) {
+                hr = 12;
+            } else if (hr > 12) {
+                hr = hr - 12;
+            }
 
             var CurrentTime = hr + " : " + min + " : " + sec;
             document.getElementsByClassName("H")[0].innerHTML = CurrentTime;
@@ -39,7 +39,6 @@
             var myDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
             var myMonth = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             var day = myDate.getDate();
-
             var CurrentDay = myDay[myDate.getDay()] + ", " + myMonth[myDate.getMonth()] + " " + day;
             document.getElementsByClassName("date")[0].innerHTML = CurrentDay;
         }
@@ -49,5 +48,4 @@
     </script>
 
 </body>
-
 </html>
